@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -119,5 +120,17 @@ public class EnemyController : MonoBehaviour
                 _currentPatrolIndex = _patrolPoints.Count - 1;
             }
         }
+    }
+
+    private void OnTriggerEnter (Collider other)
+    {
+        Debug.Log("Another collider...");
+        if (other.gameObject.tag.Equals("Player"))
+        {
+            Destroy(other.gameObject);
+            GameObject.Find("EndText").GetComponent<Text>().text = "Try again";
+
+        }
+            
     }
 }
